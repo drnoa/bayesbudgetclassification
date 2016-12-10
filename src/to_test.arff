@@ -1,0 +1,15 @@
+@relation Rel
+
+@attribute EinnahmenAusgabe {Einnahme,Ausgabe}
+@attribute Wochentag {Montag,Dienstag,Mittwoch,Donnerstag,Freitag,Wochenende}
+@attribute Quellsystem {'NB Plus',Cumulus}
+@attribute Zeit {'Anfang Monat','Mitte Monat','Ende Monat'}
+@attribute Geschaeftszweig {Lebensmittel,Moebel,Gesundheit,Verkehr,Mobilfunk,Radio,Energie,Versicherungen,Steuern,Bankomat,Andere}
+@attribute Betrag {mikro,klein,mittel,gross,riesig}
+@attribute Lebenssituation {Alleinstehend,Alleinerziehend,'Familie ohne Kinder','Familie mit 1 Kind','Familie mit 2 Kindern','Familie mit 3 Kindern','Familie mit 4 Kindern'}
+@attribute Einkommen {'bis 30000','bis 50000','bis 70000','bis 100000','bis 200000'}
+@attribute Alter {'bis 20','bis 30','bis 45','bis 65','bis 99'}
+@attribute Klasse {'Persönliche Ausgaben',Versicherungen,Steuern,Krankenkasse,Wohnen,Nebenkosten,Miete,Hausratsversicherung,Privathaftpflicht,Energie,'Oeffentlicher Verkehr',Fahrzeugfixkosten,Fahrzeugkasko,Benzin,Zeitschriftenabo,Zeitschrift,Nahrungsmittel,'Sonstige Haushaltskosten',Haushaltsgeraete,Haushalt,Wasser,Freizeit,Bekleidung,Schuhe,Arzt,Geschenke,unvorhergesehenes,'variable Ausgaben',Reserve,'fixe Ausgaben','Einkünfte pro Monat','Sonstie Einkünfte',Einkommen,Gesundheitskosten,Mobilität}
+
+@data
+Ausgabe,Dienstag,Cumulus,'Anfang Monat',Lebensmittel,klein,Alleinstehend,'bis 200000','bis 20',Nahrungsmittel

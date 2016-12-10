@@ -1,10 +1,7 @@
 package bayesbudgetclassification;
 
 import weka.classifiers.Evaluation;
-import weka.classifiers.bayes.BayesNet;
 import weka.classifiers.bayes.NaiveBayes;
-import weka.classifiers.bayes.net.search.SearchAlgorithm;
-import weka.classifiers.bayes.net.search.local.SimulatedAnnealing;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
@@ -12,20 +9,34 @@ public class Classification {
 
 	public static void main(String[] args) {
 		try {
+			/*
+			 * Load the trainingset. In the example this are all the already
+			 * classified payments.
+			 */
 		    DataSource source = new DataSource("learned_budget.arff");
-		    Instances instances = source.getDataSet();
-		    instances.setClassIndex(0);
+		    Instances data = source.getDataSet();
+		    data.setClassIndex(data.numAttributes() - 1);
 
-		    BayesNet bayesnet = new BayesNet();
+		    /*
+		     * Load the payment we like to classify
+		     */
+		    DataSource totest = new DataSource("to_test.arff");
+		    Instances testdata = totest.getDataSet();
+		    testdata.setClassIndex(data.numAttributes() - 1);
 		    
-		    SearchAlgorithm searchAlgorithm=new SimulatedAnnealing();
-		    bayesnet.setSearchAlgorithm(searchAlgorithm);
-		    bayesnet.buildClassifier(instances);
-		    Evaluation evaluation = new Evaluation(instances);
-		    evaluation.evaluateModel(bayesnet, instances);
-		    System.out.println(evaluation.toSummaryString("Resultate\n",false));
-		    System.out.println(bayesnet.getNodeValue(1, 0));
-		    System.out.println(bayesnet.getProbability(3, 2, 0));
+		    /*
+		     * Create the classifier from weka
+		     */
+		    NaiveBayes naivebayes = new NaiveBayes();
+		    naivebayes.buildClassifier(data);
+		    
+		    /*
+		     * Evaluate the possibilities
+		     */
+		    Evaluation eval_train = new Evaluation(testdata);
+		    eval_train.evaluateModel(naivebayes,testdata);
+		    
+		    System.out.println(eval_train.toSummaryString("Resultate\n",false));
 
 		} catch (Exception e) {
 			e.printStackTrace();
