@@ -32,7 +32,9 @@ public class Classification {
 		    
 		    /*
 		     * Evaluate the possibilities
-		     */
+		     * The result shows that only one record of the testdata is correct.
+		     * @Todo: Implement a loop to check each record
+		     */		    
 		    Evaluation eval_train = new Evaluation(testdata);
 		    eval_train.evaluateModel(naivebayes,testdata);
 		    

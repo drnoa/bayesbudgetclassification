@@ -1,56 +1,44 @@
 @relation Rel
-
-@attribute EinnahmenAusgabe {Einnahme,Ausgabe}
 @attribute Wochentag {Montag,Dienstag,Mittwoch,Donnerstag,Freitag,Wochenende}
-@attribute Quellsystem {'NB Plus',Cumulus}
-@attribute Zeit {'Anfang Monat','Mitte Monat','Ende Monat'}
 @attribute Geschaeftszweig {Lebensmittel,Moebel,Gesundheit,Verkehr,Mobilfunk,Radio,Energie,Versicherungen,Steuern,Bankomat,Andere}
 @attribute Betrag {mikro,klein,mittel,gross,riesig}
-@attribute Lebenssituation {Alleinstehend,Alleinerziehend,'Familie ohne Kinder','Familie mit 1 Kind','Familie mit 2 Kindern','Familie mit 3 Kindern','Familie mit 4 Kindern'}
-@attribute Einkommen {'bis 30000','bis 50000','bis 70000','bis 100000','bis 200000'}
-@attribute Alter {'bis 20','bis 30','bis 45','bis 65','bis 99'}
-@attribute Klasse {'Persönliche Ausgaben',Versicherungen,Steuern,Krankenkasse,Wohnen,Nebenkosten,Miete,Hausratsversicherung,Privathaftpflicht,Energie,'Oeffentlicher Verkehr',Fahrzeugfixkosten,Fahrzeugkasko,Benzin,Zeitschriftenabo,Zeitschrift,Nahrungsmittel,'Sonstige Haushaltskosten',Haushaltsgeraete,Haushalt,Wasser,Freizeit,Bekleidung,Schuhe,Arzt,Geschenke,unvorhergesehenes,'variable Ausgaben',Reserve,'fixe Ausgaben','Einkünfte pro Monat','Sonstie Einkünfte',Einkommen,Gesundheitskosten,Mobilität}
+@attribute Klasse {Nahrungsmittel, 'Persönliche Ausgaben', Hobby, Freizeit, Gesundheitskosten, Bekleidung, Arzt, Reserve, Miete, Steuern, Krankenkasse}
 
 @data
-Ausgabe,Dienstag,Cumulus,'Anfang Monat',Lebensmittel,klein,Alleinstehend,'bis 200000','bis 20',Nahrungsmittel
-Ausgabe,Dienstag,Cumulus,'Anfang Monat',Lebensmittel,klein,Alleinstehend,'bis 200000','bis 20',Nahrungsmittel
-Ausgabe,Freitag,'NB Plus','Ende Monat',Mobilfunk,mittel,Alleinstehend,'bis 200000','bis 20','Persönliche Ausgaben'
-Ausgabe,Montag,'NB Plus','Anfang Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Einnahme,Mittwoch,'NB Plus','Anfang Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','Sonstie Einkünfte'
-Ausgabe,Mittwoch,'NB Plus','Anfang Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Freizeit
-Ausgabe,Wochenende,'NB Plus','Anfang Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Montag,'NB Plus','Anfang Monat',Andere,mittel,Alleinstehend,'bis 200000','bis 20',Freizeit
-Ausgabe,Dienstag,'NB Plus','Anfang Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Donnerstag,'NB Plus','Mitte Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Gesundheitskosten
-Ausgabe,Wochenende,'NB Plus','Mitte Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Dienstag,'NB Plus','Mitte Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Freizeit
-Ausgabe,Mittwoch,'NB Plus','Mitte Monat',Andere,mittel,Alleinstehend,'bis 200000','bis 20',Bekleidung
-Ausgabe,Donnerstag,'NB Plus','Mitte Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Freitag,'NB Plus','Mitte Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Einnahme,Montag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','Sonstie Einkünfte'
-Ausgabe,Montag,'NB Plus','Ende Monat',Andere,klein,Alleinstehend,'bis 200000','bis 20','Persönliche Ausgaben'
-Ausgabe,Montag,'NB Plus','Ende Monat',Mobilfunk,mittel,Alleinstehend,'bis 200000','bis 20','Persönliche Ausgaben'
-Ausgabe,Montag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Arzt
-Einnahme,Dienstag,'NB Plus','Ende Monat',Andere,riesig,Alleinstehend,'bis 200000','bis 20','Sonstie Einkünfte'
-Einnahme,Mittwoch,'NB Plus','Ende Monat',Andere,riesig,Alleinstehend,'bis 200000','bis 20','Einkünfte pro Monat'
-Ausgabe,Donnerstag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Reserve
-Ausgabe,Donnerstag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Miete
-Ausgabe,Montag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Montag,'NB Plus','Ende Monat',Andere,mittel,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Montag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Reserve
-Ausgabe,Donnerstag,'NB Plus','Anfang Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Reserve
-Ausgabe,Freitag,'NB Plus','Mitte Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Steuern
-Ausgabe,Montag,'NB Plus','Mitte Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Freitag,'NB Plus','Mitte Monat',Andere,mikro,Alleinstehend,'bis 200000','bis 20',Reserve
-Ausgabe,Freitag,'NB Plus','Mitte Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','Persönliche Ausgaben'
-Ausgabe,Montag,'NB Plus','Ende Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Einnahme,Freitag,'NB Plus','Ende Monat',Andere,riesig,Alleinstehend,'bis 200000','bis 20','Einkünfte pro Monat'
-Ausgabe,Freitag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Montag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Miete
-Ausgabe,Wochenende,'NB Plus','Ende Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Dienstag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Reserve
-Ausgabe,Donnerstag,'NB Plus','Ende Monat',Mobilfunk,mittel,Alleinstehend,'bis 200000','bis 20','Persönliche Ausgaben'
-Ausgabe,Donnerstag,'NB Plus','Ende Monat',Bankomat,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Freitag,'NB Plus','Ende Monat',Versicherungen,gross,Alleinstehend,'bis 200000','bis 20',Krankenkasse
-Ausgabe,Freitag,'NB Plus','Ende Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20','variable Ausgaben'
-Ausgabe,Montag,'NB Plus','Anfang Monat',Andere,gross,Alleinstehend,'bis 200000','bis 20',Reserve
+Dienstag,Lebensmittel,klein,Nahrungsmittel
+Dienstag,Lebensmittel,klein,Nahrungsmittel
+Freitag,Mobilfunk,mittel,'Persönliche Ausgaben'
+Montag,Bankomat,gross,Hobby
+Mittwoch,Andere,gross,Freizeit
+Wochenende,Andere,gross,Hobby
+Montag,Andere,mittel,Freizeit
+Dienstag,Bankomat,gross,Hobby
+Donnerstag,Andere,gross,Gesundheitskosten
+Wochenende,Bankomat,gross,Hobby
+Dienstag,Andere,gross,Freizeit
+Mittwoch,Andere,mittel,Bekleidung
+Donnerstag,Bankomat,gross,Hobby
+Freitag,Bankomat,gross,Hobby
+Montag,Andere,klein,'Persönliche Ausgaben'
+Montag,Mobilfunk,mittel,'Persönliche Ausgaben'
+Montag,Andere,gross,Arzt
+Donnerstag,Andere,gross,Reserve
+Donnerstag,Andere,gross,Miete
+Montag,Andere,gross,Hobby
+Montag,Andere,mittel,Hobby
+Montag,Andere,gross,Reserve
+Donnerstag,Andere,gross,Reserve
+Freitag,Andere,gross,Steuern
+Montag,Bankomat,gross,Hobby
+Freitag,Andere,mikro,Reserve
+Freitag,Andere,gross,'Persönliche Ausgaben'
+Montag,Bankomat,gross,Hobby
+Freitag,Andere,gross,Hobby
+Montag,Andere,gross,Miete
+Wochenende,Bankomat,gross,Hobby
+Dienstag,Andere,gross,Reserve
+Donnerstag,Mobilfunk,mittel,'Persönliche Ausgaben'
+Donnerstag,Bankomat,gross,Hobby
+Freitag,Versicherungen,gross,Krankenkasse
+Freitag,Andere,gross,Hobby
+Montag,Andere,gross,Reserve
