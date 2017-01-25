@@ -18,7 +18,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class Classification {
 
 	/*
-	 * In the main class we create a bayes classifier and calculate the
+	 * In the main class we create a Bayes classifier and calculate the
 	 * probability for all budget positions
 	 */
 	public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class Classification {
 		// get feature vector definition
 		Instances featureVector = createFeatureVector();
 		// get the trainingsdata
-		Instances trainingsSet = buildTrainingsSet();
+		Instances trainingsSet = loadTrainingsSet();
 
 		System.out.println("*The Trainingsset we use looks like this:*");
 		System.out.println(trainingsSet);
@@ -49,15 +49,15 @@ public class Classification {
 			naivebayes.buildClassifier(trainingsSet);
 			/*
 			 * get the probability for each class this gives us the probability
-			 * for each budgetposition
+			 * for each budget position
 			 */
 			double[] probability = naivebayes.distributionForInstance(testData.firstInstance());
 
 			System.out.println("\n*the bayes classification calculates the following results*");
 
 			/*
-			 * now we store all the probabilities in a hashmap togehter with the
-			 * relatet budgetpositions
+			 * now we store all the probabilities in a hashmap together with the
+			 * related budget positions
 			 */
 			HashMap<Double, String> budgetmap = new LinkedHashMap<Double, String>();
 			ArrayList<String> budgetPositions = getBudgetPositions();
@@ -74,7 +74,7 @@ public class Classification {
 
 			int budgetpositionindex = budgetPositions.indexOf(budgetmap.get(maxValueInMap));
 
-			// finaly we add the testet data and the budegetposition back to our
+			// finally we add the tested data and the budget position back to our
 			// trainingsset
 			learnNewTrainingData(budgetpositionindex);
 
@@ -84,9 +84,9 @@ public class Classification {
 	}
 
 	/*
-	 * In this class we create a
+	 * In this class we load the trainingsdata from the .arff file
 	 */
-	private static Instances buildTrainingsSet() {
+	private static Instances loadTrainingsSet() {
 
 		/*
 		 * Load the trainingset. In the example this are all the already
@@ -113,7 +113,7 @@ public class Classification {
 		 * file.
 		 */
 		Instances testdata = defineTestdata(createFeatureVector());
-		Instances trainingsSet = buildTrainingsSet();
+		Instances trainingsSet = loadTrainingsSet();
 		Instance newdataset = testdata.get(0);
 
 		double[] instanceValue1 = newdataset.toDoubleArray();
@@ -139,7 +139,7 @@ public class Classification {
 	}
 
 	/*
-	 * defines the Testdataset. This is the payment we like to check an classify
+	 * defines the testdataset. This is the payment we like to check an classify
 	 */
 	private static Instances defineTestdata(Instances testData) {
 
@@ -205,7 +205,7 @@ public class Classification {
 	}
 
 	/*
-	 * defines the possible budet positions
+	 * defines the possible budget positions
 	 */
 	private static ArrayList<String> getBudgetPositions() {
 
