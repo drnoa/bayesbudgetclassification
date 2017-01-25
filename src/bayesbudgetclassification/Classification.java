@@ -20,7 +20,6 @@ public class Classification {
 	/*
 	 * In the main class we create a bayes classifier and calculate the
 	 * probability for all budget positions
-	 * 
 	 */
 	public static void main(String[] args) {
 
@@ -28,23 +27,33 @@ public class Classification {
 		Instances featureVector = createFeatureVector();
 		// get the trainingsdata
 		Instances trainingsSet = buildTrainingsSet();
+
+		System.out.println("*The Trainingsset we use looks like this:*");
+		System.out.println(trainingsSet);
+
 		// get the data we like to proof
 		Instances testData = defineTestdata(featureVector);
 		testData.setClassIndex(trainingsSet.numAttributes() - 1);
 
+		System.out.println("\n*The payment i like to check looks like this:*");
+		System.out.println(trainingsSet);
+
 		try {
 			/*
-			 * Create the classifier from weka
+			 * Create the classifier
 			 */
 			NaiveBayes naivebayes = new NaiveBayes();
 			/*
-			 * give the classifier the trainingdata
+			 * give the trainingdataset to the classifier
 			 */
 			naivebayes.buildClassifier(trainingsSet);
 			/*
-			 * get the probability for each class
+			 * get the probability for each class this gives us the probability
+			 * for each budgetposition
 			 */
 			double[] probability = naivebayes.distributionForInstance(testData.firstInstance());
+
+			System.out.println("\n*the bayes classification calculates the following results*");
 
 			/*
 			 * now we store all the probabilities in a hashmap togehter with the
@@ -54,13 +63,19 @@ public class Classification {
 			ArrayList<String> budgetPositions = getBudgetPositions();
 			for (int i = 0; i < budgetPositions.size(); i++) {
 				budgetmap.put(probability[i], budgetPositions.get(i));
+				System.out.println("The probability that my testdata belongs to the budgetposition "
+						+ budgetPositions.get(i) + " is " + Math.round(probability[i] * 10000) / 10000.0 * 100 + "%");
 			}
 			// we try to get the highest possibility of all budget-positions
 			double maxValueInMap = Collections.max(budgetmap.keySet());
 
+			System.out.println("Based on the calculation we select the highest probability whitch is "
+					+ Math.round(maxValueInMap * 10000) / 10000.0 * 100 + "%");
+
 			int budgetpositionindex = budgetPositions.indexOf(budgetmap.get(maxValueInMap));
 
-			// finaly we add the testet data and the budegetposition back to our trainingsset
+			// finaly we add the testet data and the budegetposition back to our
+			// trainingsset
 			learnNewTrainingData(budgetpositionindex);
 
 		} catch (Exception e) {
@@ -71,7 +86,7 @@ public class Classification {
 	/*
 	 * In this class we create a
 	 */
-	public static Instances buildTrainingsSet() {
+	private static Instances buildTrainingsSet() {
 
 		/*
 		 * Load the trainingset. In the example this are all the already
@@ -89,7 +104,10 @@ public class Classification {
 		return null;
 	}
 
-	public static void learnNewTrainingData(int learnedclass) throws Exception {
+	/*
+	 * 
+	 */
+	private static void learnNewTrainingData(int learnedclass) throws Exception {
 		/*
 		 * Load the trainingset add the new trained data to the set and save the
 		 * file.
@@ -102,9 +120,12 @@ public class Classification {
 		double[] instanceValue = Arrays.copyOf(instanceValue1, instanceValue1.length + 1);
 		instanceValue[3] = learnedclass;
 
+		
 		try {
 
 			trainingsSet.add(new DenseInstance(1.0, instanceValue));
+
+			System.out.println("\nThe dataset we get looks like this: "+trainingsSet.lastInstance());
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter("learned_budget.arff"));
 			writer.write(trainingsSet.toString());
@@ -118,25 +139,27 @@ public class Classification {
 	}
 
 	/*
-	 * 
+	 * defines the Testdataset. This is the payment we like to check an classify
 	 */
-	public static Instances defineTestdata(Instances testData) {
+	private static Instances defineTestdata(Instances testData) {
 
 		// set testset
 		double[] instanceValue1 = new double[testData.numAttributes() - 1];
 
-		instanceValue1[0] = 1;
-		instanceValue1[1] = 0;
-		instanceValue1[2] = 1;
+		instanceValue1[0] = 1; // Dienstag
+		instanceValue1[1] = 0; // Lebensmittel
+		instanceValue1[2] = 1; // klein
 		testData.add(new DenseInstance(1.0, instanceValue1));
 
 		return testData;
 	}
 
 	/*
+	 * This method generates the definition of our vectors and sets all possible
+	 * attributes and values of them
 	 * 
 	 */
-	public static Instances createFeatureVector() {
+	private static Instances createFeatureVector() {
 
 		ArrayList<Attribute> attribute = new ArrayList<Attribute>(5);
 
@@ -181,7 +204,10 @@ public class Classification {
 		return featureVectorDefinition;
 	}
 
-	public static ArrayList<String> getBudgetPositions() {
+	/*
+	 * defines the possible budet positions
+	 */
+	private static ArrayList<String> getBudgetPositions() {
 
 		ArrayList<String> classVal = new ArrayList<String>();
 		classVal.add("Nahrungsmittel");
